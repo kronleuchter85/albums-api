@@ -24,3 +24,14 @@ func ApiPostAlbum(c * gin.Context ){
 }
 
 
+func ApiGetAlbumById(c * gin.Context){
+	id := c.Param("id")
+
+	for _ , a := range repository.GetAllAlbums() {
+		if a.ID == id {
+			c.IndentedJSON(http.StatusCreated , a)
+			return
+		}
+	}
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+}
