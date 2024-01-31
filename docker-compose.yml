@@ -9,4 +9,12 @@ services:
         - "8080:8080"
       container_name: albums-api
 
-        
+    albums_mongo:
+        image: mongo:4.0.4
+        container_name: albums_mongo
+        ports:
+            - 27017:27017
+        environment:
+            - MONGO_INITDB_DATABASE=albums
+        volumes:
+            - ./mongodb_data:/data/db
